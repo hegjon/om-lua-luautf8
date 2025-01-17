@@ -2,7 +2,7 @@
 %global tag %{version}
 
 %define lua_version %(lua -e 'print(_VERSION)' | cut -d ' ' -f 2)
-%define lua_pkgdir %{_libdir}/lua/%{lua_version}
+%define lua_libdir %{_libdir}/lua/%{lua_version}
 
 Name:      lua-luautf8
 Version:   0.1.5
@@ -15,8 +15,10 @@ URL:       %{forgeurl}
 %forgemeta
 Source:    %{forgesource}
 
+Requires: lua
+
+BuildRequires: lua
 BuildRequires: lua-devel
-BuildRequires: gcc
 
 %description
 This module adds UTF-8 support to Lua.
@@ -46,7 +48,7 @@ It also add some useful routines for UTF-8 features, including:
 %build
 %{__cc} %{optflags} %{?__global_ldflags} -fPIC -c -o lutf8lib.o lutf8lib.c
 
-%{__cc} %{?__global_ldflags} -shared -o lua-utf8.so lutf8lib.o
+%{__cc} %{?__global_ldflags} -llua -shared -o lua-utf8.so lutf8lib.o
 
 
 %install
