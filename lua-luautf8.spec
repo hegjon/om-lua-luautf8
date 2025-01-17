@@ -1,3 +1,5 @@
+%define _disable_ld_no_undefined 1
+
 %global forgeurl https://github.com/starwing/luautf8
 %global tag %{version}
 
@@ -48,7 +50,7 @@ It also add some useful routines for UTF-8 features, including:
 %build
 %{__cc} %{optflags} %{?__global_ldflags} -fPIC -c -o lutf8lib.o lutf8lib.c
 
-%{__cc} %{?__global_ldflags} $(pkg-config --libs lua) -shared -o lua-utf8.so lutf8lib.o
+%{__cc} %{?__global_ldflags} -shared -o lua-utf8.so lutf8lib.o
 
 
 %install
