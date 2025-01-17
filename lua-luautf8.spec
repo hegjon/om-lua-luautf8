@@ -48,7 +48,7 @@ It also add some useful routines for UTF-8 features, including:
 %build
 %{__cc} %{optflags} %{?__global_ldflags} -fPIC -c -o lutf8lib.o lutf8lib.c
 
-%{__cc} %{?__global_ldflags} -llua -shared -o lua-utf8.so lutf8lib.o
+%{__cc} %{?__global_ldflags} $(pkg-config --libs lua) -shared -o lua-utf8.so lutf8lib.o
 
 
 %install
