@@ -1,10 +1,14 @@
 %global forgeurl https://github.com/starwing/luautf8
 %global tag %{version}
 
+%define lua_version %(lua -e 'print(_VERSION)' | cut -d ' ' -f 2)
+%define lua_pkgdir %{_libdir}/lua/%{lua_version}
+
 Name:      lua-luautf8
 Version:   0.1.5
-Release:   6%{?dist}
+Release:   1
 Summary:   A UTF-8 support module for Lua
+Group:     Development/Other
 License:   MIT
 URL:       %{forgeurl}
 
@@ -61,26 +65,3 @@ lua test.lua
 %license LICENSE
 %doc README.md
 %{lua_libdir}/lua-utf8.so
-
-
-%changelog
-* Fri Jan 17 2025 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.5-6
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_42_Mass_Rebuild
-
-* Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.5-5
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
-
-* Thu Jan 25 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.5-4
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
-
-* Sun Jan 21 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.5-3
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
-
-* Thu Jul 20 2023 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.5-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
-
-* Thu Dec 08 2022 Jonny Heggheim <hegjon@gmail.com> - 0.1.5-1
-- Updated to version 0.1.5
-
-* Wed Nov 16 2022 Jonny Heggheim <hegjon@gmail.com> - 0.1.4-1
-- Initial package
